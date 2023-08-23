@@ -259,9 +259,9 @@ GPS_FIX_TYPE AP_ExternalAHRS_SBG::fix_convertion(const SbgEComGpsPosType fixType
 void AP_ExternalAHRS_SBG::onLogReceived(SbgEComClass msg_class, SbgEComMsgId msg, const SbgBinaryLogData &ref_sbg_data, uint64_t system_timestamp)
 {
     last_filter_pkt = system_timestamp;
-
     if (msg_class == SBG_ECOM_CLASS_LOG_ECOM_0)
     {
+        //WITH_SEMAPHORE(state.sem);
         switch (msg)
         {
         case SBG_ECOM_LOG_UTC_TIME:
@@ -329,7 +329,6 @@ void AP_ExternalAHRS_SBG::processGpsVel(const SbgLogGpsVel *p_gps_vel)
     //GCS_SEND_TEXT(MAV_SEVERITY_INFO, "Velocity:[ N:%f, E:%f, D:%f]", gps_data.ned_velocity_north, gps_data.ned_velocity_east, gps_data.ned_velocity_down);
     
     gps_data.speed_accuracy = sqrtf(powf(p_gps_vel->velocityAcc[0], 2) + powf(p_gps_vel->velocityAcc[1], 2));
-    gps_data.vdop = gps_data.speed_accuracy;
 }
 
 void AP_ExternalAHRS_SBG::processStatusData(const SbgLogStatusData *statusData) {
@@ -431,8 +430,8 @@ void AP_ExternalAHRS_SBG::post_data(){
         vertical_pos_accuracy: gps_data.vertical_position_accuracy,
         horizontal_vel_accuracy: gps_data.speed_accuracy,
 
-        hdop: gps_data.hdop,
-        vdop: gps_data.vdop,
+        hdop: UINT16_MAX,
+        vdop: UINT16_MAX,
 
         longitude: gps_data.lon,
         latitude: gps_data.lat,
@@ -488,7 +487,7 @@ void AP_ExternalAHRS_SBG::post_data(){
 
 void AP_ExternalAHRS_SBG::processGpsHdt(const SbgLogGpsHdt *p_gps_hdt)
 {
-    gps_data.hdop = p_gps_hdt->headingAccuracy;
+    //gps_data.hdop = p_gps_hdt->headingAccuracy;
 }
 
 void AP_ExternalAHRS_SBG::processUtc(const SbgLogUtcData *p_utc)

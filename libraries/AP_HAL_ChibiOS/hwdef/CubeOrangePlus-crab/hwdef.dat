@@ -1,0 +1,6 @@
+# Bi-directional dshot version of CubeOrange
+
+include ../CubeOrangePlus/hwdef.dat
+
+define HAL_EXTERNAL_AHRS_SBG_ENABLED 1
+define AP_GPS_NMEA_CUSTOM_CONFIG_STRING "$PAMTC,EN,ALL,1,2\n$PAMTC,BAUD,38400"

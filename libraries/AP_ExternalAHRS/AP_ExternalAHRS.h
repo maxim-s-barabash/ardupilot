@@ -34,6 +34,7 @@ class AP_ExternalAHRS {
 public:
     friend class AP_ExternalAHRS_backend;
     friend class AP_ExternalAHRS_VectorNav;
+    friend class AP_ExternalAHRS_SBG;
 
     AP_ExternalAHRS();
 
@@ -45,6 +46,7 @@ public:
         None   = 0,
         VecNav = 1,
         LORD = 2,
+        SBG = 3,
     };
 
     static AP_ExternalAHRS *get_singleton(void) {

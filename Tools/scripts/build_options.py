@@ -30,6 +30,7 @@ class Feature:
 BUILD_OPTIONS = [
     Feature('AHRS', 'EKF3', 'HAL_NAVEKF3_AVAILABLE', 'Enable EKF3', 1, None),
     Feature('AHRS', 'EKF2', 'HAL_NAVEKF2_AVAILABLE', 'Enable EKF2', 0, None),
+    Feature('AHRS', 'AHRS_EXT_SBG', 'AP_EXTERNAL_AHRS_SBG_ENABLED', 'Enable SBG External AHRS', 0, "AHRS_EXT"),
     Feature('AHRS', 'AHRS_EXT', 'HAL_EXTERNAL_AHRS_ENABLED', 'Enable External AHRS', 0, None),
     Feature('AHRS', 'TEMPCAL', 'HAL_INS_TEMPERATURE_CAL_ENABLE', 'Enable IMU Temperature Calibration', 0, None),
     Feature('AHRS', 'VISUALODOM', 'HAL_VISUALODOM_ENABLED', 'Enable Visual Odometry', 0, 'EKF3_EXTNAV'),

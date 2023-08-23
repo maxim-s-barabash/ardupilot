@@ -1,6 +1,21 @@
-# Bi-directional dshot version of CubeOrange
+# CRAB12 version of CubeOrangePlus
+# mapping boat parameters for ArduPilor Rover-4.4 (or higher).
+#
+# Serial1: Mavlink-router baud 460800
+# Serial3: AHRS SBG Ellipse baud 460800
+# Serial4: GPS FURUNO NMEA
 
 include ../CubeOrangePlus/hwdef.dat
 
+define AP_CUSTOM_FIRMWARE_STRING "CRAB12"
+
+# INCLUDE SBG DRIVER
 define HAL_EXTERNAL_AHRS_SBG_ENABLED 1
-define AP_GPS_NMEA_CUSTOM_CONFIG_STRING "$PAMTC,EN,ALL,1,2\n$PAMTC,BAUD,38400"
+
+# SETUP FURUNO GP-330b
+define AP_GPS_NMEA_ENABLED 1
+
+# https://www.manualslib.com/manual/629148/Airmar-Pb200.html?page=130
+
+define NMEA_UNICORE_SETUP "$PAMTC,EN,ALL,1,2\r\n$PAMTC,BAUD,38400\r\n"
+define AP_GPS_NMEA_CUSTOM_CONFIG_STRING "$PAMTC,EN,ALL,1,2\r\n$PAMTC,BAUD,38400"
